@@ -6,11 +6,7 @@ use core::panic::PanicInfo;
 //entry point for the kernel
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
-    let vga_buffer = 0xb8000 as *mut u8;
-    unsafe {
-        *vga_buffer = b'H';
-        *vga_buffer.offset(1) = 0x0f;
-    }
+    println!("Woohoo!");
 
     loop {}
 }
@@ -19,3 +15,5 @@ pub extern "C" fn _start() -> ! {
 fn panic(_info: &PanicInfo) -> ! {
     loop {}
 }
+
+mod vga_buffer;
